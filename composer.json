@@ -1,0 +1,7 @@
+{
+    "require": {
+        "libern/qr-code-reader": "^1.0",
+        "arcanedev/qr-code": "^1.0",
+        "bacon/bacon-qr-code": "^1.0"
+    }
+}
