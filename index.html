@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+        <h1>¿Qué deseas hacer?</h1>
+        <div>
+            <h2>Crear código QR</h2>
+            <br/>
+            <form enctype="multipart/form-data" action="crear.php" method="post">
+                Texto a añadir: <input type="text" name="texto"/><br/>
+                Nombre para la imagen: <input type="text" name="nombre"/><br/>
+                <input type="submit" value="Submit"/>
+            </form>
+        </div>
+        <br/>
+        <div>
+            <h2>Leer código QR</h2>
+            <br/>
+            <form enctype="multipart/form-data" action="leer.php" method="post">
+                Nombre de la imagen: <input type="text" name="nombre"/><br/>
+                <input type="submit" value="Submit"/>
+            </form>
+        </div>
+    </body>
+</html>
