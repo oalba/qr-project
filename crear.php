@@ -14,14 +14,7 @@
     $fichero = 'codes/'.$nombre.'.png';
 
     if (file_exists($fichero)) {
-        if ($_POST['action'] == 'Mostrar') {
-            header('Content-Type: image/png');
-            header('Content-Disposition: inline; filename='.$fichero);
-            header('Content-Transfer-Encoding: binary');
-            header('Accept-Ranges: bytes');
-            readfile($fichero);
-            unlink($fichero);
-        } else if ($_POST['action'] == 'Descargar') {
+        if ($_POST['action'] == 'Descargar') {
             header('Content-Description: File Transfer');
             header('Content-Type: application/octet-stream');
             header('Content-Disposition: attachment; filename="'.basename($fichero).'"');
@@ -31,7 +24,15 @@
             header('Content-Length: ' . filesize($fichero));
             readfile($fichero);
             unlink($fichero);
+            exit;
             header("location:index.html");
+        } else if ($_POST['action'] == 'Mostrar') {
+            header('Content-Type: image/png');
+            header('Content-Disposition: inline; filename='.$fichero);
+            header('Content-Transfer-Encoding: binary');
+            header('Accept-Ranges: bytes');
+            readfile($fichero);
+            unlink($fichero);
         }
     }
 ?>
