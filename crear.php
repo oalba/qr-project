@@ -1,13 +1,16 @@
 <?php
     require __DIR__ . '/vendor/autoload.php';
     
+    require ("vendor/phpmailer/phpmailer/PHPMailerAutoload.php");
+    require ("vendor/phpmailer/phpmailer/class.phpmailer.php");
+    
     //require 'PHPMailerAutoload.php';
     //require("class.phpmailer.php");
     
     $nombre = $_POST["nombre"];
     $texto = $_POST["texto"];
-    //$email = $_POST["email"];
-    //$pass = $_POST["pass"];
+    $email = $_POST["email"];
+    $pass = $_POST["pass"];
     
     //Crear un codigo QR
     $renderer = new BaconQrCode\Renderer\Image\Png();
@@ -38,19 +41,20 @@
             header('Accept-Ranges: bytes');
             readfile($fichero);
             unlink($fichero);
-        } /*else if ($_POST['action'] == 'Email') {
+        } else if ($_POST['action'] == 'Email') {
             $mail = new PHPMailer;
-            //$mail->SMTPDebug = 3;                               // Enable verbose debug output
+            $mail->SMTPDebug = 2;                               // Enable verbose debug output
             $mail->isSMTP();                                      // Set mailer to use SMTP
-            $mail->Host = 'smtp.mail.yahoo.com';  // Specify main and backup SMTP servers
-            $mail->SMTPAuth = false;                               // Enable SMTP authentication
-            $mail->Username = 'odeialba@yahoo.es';                 // SMTP username
+            $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+            $mail->SMTPAuth = true;                               // Enable SMTP authentication
+            $mail->Username = 'oalbaab14dw@ikzubirimanteo.com';                 // SMTP username
             $mail->Password = $pass;                           // SMTP password
             $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
             $mail->Port = 587;                                    // TCP port to connect to
-            $mail->setFrom('odeialba@yahoo.es', 'Odei Alba');
+            $mail->From = "oalbaab14dw@ikzubirimanteo.com";
+            $mail->FromName = "Odei Alba";
             //$mail->addAddress('joe@example.net', 'Joe User');     // Add a recipient
-            $mail->addAddress($email);               // Name is optional
+            $mail->addAddress($email, "Odei");               // Name is optional
             //$mail->addReplyTo('info@example.com', 'Information');
             //$mail->addCC('cc@example.com');
             //$mail->addBCC('bcc@example.com');
@@ -68,6 +72,6 @@
                 echo 'Message has been sent';
                 unlink($fichero);
             }
-        }*/
+        }
     }
 ?>
