@@ -1,8 +1,9 @@
 <?php
     require __DIR__ . '/vendor/autoload.php';
     
-    require ("vendor/phpmailer/phpmailer/PHPMailerAutoload.php");
-    require ("vendor/phpmailer/phpmailer/class.phpmailer.php");
+    /*require ("vendor/phpmailer/phpmailer/PHPMailerAutoload.php");
+    require ("vendor/phpmailer/phpmailer/class.phpmailer.php");*/
+    use Mailgun\Mailgun;
     
     //require 'PHPMailerAutoload.php';
     //require("class.phpmailer.php");
@@ -10,7 +11,7 @@
     $nombre = $_POST["nombre"];
     $texto = $_POST["texto"];
     $email = $_POST["email"];
-    $pass = $_POST["pass"];
+    //$pass = $_POST["pass"];
     
     //Crear un codigo QR
     $renderer = new BaconQrCode\Renderer\Image\Png();
@@ -42,28 +43,35 @@
             readfile($fichero);
             unlink($fichero);
         } else if ($_POST['action'] == 'Email') {
-            $mail = new PHPMailer;
-            $mail->SMTPDebug = 2;                               // Enable verbose debug output
-            $mail->isSMTP();                                      // Set mailer to use SMTP
-            $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
-            $mail->SMTPAuth = true;                               // Enable SMTP authentication
-            $mail->Username = 'oalbaab14dw@ikzubirimanteo.com';                 // SMTP username
-            $mail->Password = $pass;                           // SMTP password
-            $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-            $mail->Port = 587;                                    // TCP port to connect to
+            // Instantiate the client.
+            $mgClient = new Mailgun('key-**********************************');
+            $domain = "sandbox*********************************.mailgun.org";
+            // Make the call to the client.
+            $result = $mgClient->sendMessage($domain, array(
+                // 'from'    => 'Excited User <mailgun@sandbox......mailgun.org>',
+                'from'	=> 'Me <**************************************>',
+                'to'      => 'Baz <'.$email.'>',
+                'subject' => 'Hello',
+                'text'    => 'Testing some Mailgun awesomness!'
+                //'attachment' => $fichero
+            ));
+            unlink($fichero);
+            /*$mail = new PHPMailer;
+            $mail->SMTPDebug = 2;                              
+            $mail->isSMTP();                                      
+            $mail->Host = 'smtp.gmail.com';  
+            $mail->SMTPAuth = true;                               
+            $mail->Username = 'oalbaab14dw@ikzubirimanteo.com';                
+            $mail->Password = $pass;                           
+            $mail->SMTPSecure = 'tls';                           
+            $mail->Port = 587;                                    
             $mail->From = "oalbaab14dw@ikzubirimanteo.com";
             $mail->FromName = "Odei Alba";
-            //$mail->addAddress('joe@example.net', 'Joe User');     // Add a recipient
-            $mail->addAddress($email, "Odei");               // Name is optional
-            //$mail->addReplyTo('info@example.com', 'Information');
-            //$mail->addCC('cc@example.com');
-            //$mail->addBCC('bcc@example.com');
-            $mail->addAttachment($fichero);         // Add attachments
-            //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
-            $mail->isHTML(true);                                  // Set email format to HTML
+            $mail->addAddress($email, "Odei");              
+            $mail->addAttachment($fichero);        
+            $mail->isHTML(true);                                
             $mail->Subject = 'Código QR';
             $mail->Body    = 'El código QR está adjunto';
-            //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
             if(!$mail->send()) {
                 echo 'Message could not be sent.';
                 echo 'Mailer Error: ' . $mail->ErrorInfo;
@@ -71,7 +79,7 @@
             } else {
                 echo 'Message has been sent';
                 unlink($fichero);
-            }
+            }*/
         }
     }
 ?>
