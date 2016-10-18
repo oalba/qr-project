@@ -43,19 +43,19 @@
             readfile($fichero);
             unlink($fichero);
         } else if ($_POST['action'] == 'Email') {
-            // Instantiate the client.
-            $mgClient = new Mailgun('key-**********************************');
-            $domain = "sandbox*********************************.mailgun.org";
-            // Make the call to the client.
-            $result = $mgClient->sendMessage($domain, array(
-                // 'from'    => 'Excited User <mailgun@sandbox......mailgun.org>',
-                'from'	=> 'Me <**************************************>',
-                'to'      => 'Baz <'.$email.'>',
-                'subject' => 'Hello',
-                'text'    => 'Testing some Mailgun awesomness!'
-                //'attachment' => $fichero
-            ));
+            $domain = "sandbox*****************************.mailgun.org";
+            $client = new \Http\Adapter\Guzzle6\Client(); 
+            $mailgun = new \Mailgun\Mailgun('key-********************', $client);
+            $result = $mailgun->sendMessage($domain, array(
+                'from'	=> 'Me <oalbaab14dw@ikzubirimanteo.com>',
+                'to'      => 'Usuario <'.$email.'>',
+                'subject' => 'Código QR',
+                'text'    => 'El código QR está adjunto'), 
+                array(
+                    'attachment' => array($fichero)
+                ));
             unlink($fichero);
+            header("location:index.html");
             /*$mail = new PHPMailer;
             $mail->SMTPDebug = 2;                              
             $mail->isSMTP();                                      
