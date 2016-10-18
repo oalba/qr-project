@@ -8,10 +8,10 @@ class ComposerStaticInit93798b02cbf84061d843a89eae009df2
 {
     public static $files = array (
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
-        'ddc0a4d7e61c0286f0f8593b1903e894' => __DIR__ . '/..' . '/clue/stream-filter/src/functions.php',
-        '8cff32064859f4559445b89279f3199c' => __DIR__ . '/..' . '/php-http/message/src/filters.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
+        'ddc0a4d7e61c0286f0f8593b1903e894' => __DIR__ . '/..' . '/clue/stream-filter/src/functions.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
+        '8cff32064859f4559445b89279f3199c' => __DIR__ . '/..' . '/php-http/message/src/filters.php',
         '7fdad27ad584a05fb8da81178cdd742b' => __DIR__ . '/..' . '/arcanedev/qr-code/src/helpers.php',
     );
 
@@ -23,6 +23,7 @@ class ComposerStaticInit93798b02cbf84061d843a89eae009df2
         'L' => 
         array (
             'Libern\\QRCodeReader\\' => 20,
+            'League\\OAuth2\\Client\\' => 21,
         ),
         'H' => 
         array (
@@ -57,6 +58,11 @@ class ComposerStaticInit93798b02cbf84061d843a89eae009df2
         'Libern\\QRCodeReader\\' => 
         array (
             0 => __DIR__ . '/..' . '/libern/qr-code-reader/src',
+        ),
+        'League\\OAuth2\\Client\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/oauth2-client/src',
+            1 => __DIR__ . '/..' . '/league/oauth2-google/src',
         ),
         'Http\\Promise\\' => 
         array (
@@ -106,6 +112,20 @@ class ComposerStaticInit93798b02cbf84061d843a89eae009df2
     );
 
     public static $prefixesPsr0 = array (
+        'S' => 
+        array (
+            'SecurityLib' => 
+            array (
+                0 => __DIR__ . '/..' . '/ircmaxell/security-lib/lib',
+            ),
+        ),
+        'R' => 
+        array (
+            'RandomLib' => 
+            array (
+                0 => __DIR__ . '/..' . '/ircmaxell/random-lib/lib',
+            ),
+        ),
         'M' => 
         array (
             'Mailgun' => 

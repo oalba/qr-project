@@ -15,7 +15,7 @@
 
 namespace League\OAuth2\Client\Provider;
 
-require 'vendor/autoload.php';
+require '../../autoload.php';
 
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use League\OAuth2\Client\Token\AccessToken;
@@ -25,12 +25,16 @@ use Psr\Http\Message\ResponseInterface;
 session_start();
 
 //If this automatic URL doesn't work, set it yourself manually
-$redirectUri = isset($_SERVER['HTTPS']) ? 'https://' : 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
-//$redirectUri = 'http://localhost/phpmailer/get_oauth_token.php';
+//$redirectUri = isset($_SERVER['HTTPS']) ? 'https://' : 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
+$redirectUri = 'http://qr-project-oalba.c9users.io/vendor/phpmailer/phpmailer/get_oauth_token.php';
 
 //These details obtained are by setting up app in Google developer console.
-$clientId = 'RANDOMCHARS-----duv1n2.apps.googleusercontent.com';
-$clientSecret = 'RANDOMCHARS-----lGyjPcRtvP';
+//$clientId = 'RANDOMCHARS-----duv1n2.apps.googleusercontent.com';
+//$clientSecret = 'RANDOMCHARS-----lGyjPcRtvP';
+$clientId = '222546505251-cpspv8tniv3teu966t6alieje3bri88c.apps.googleusercontent.com';
+//$clientId = '40698488631-29b4ok7mau3ppj1vp7rip6p220n8a95e.apps.googleusercontent.com';
+$clientSecret = 'ojo96Twzq_QEO3JHRCgjuDl1';
+//$clientSecret = 'OPwzUH7CbfFzybH6uPXFTzuE';
 
 class Google extends AbstractProvider
 {

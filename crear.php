@@ -1,12 +1,12 @@
 <?php
     require __DIR__ . '/vendor/autoload.php';
     
+    //PHPMailer
     /*require ("vendor/phpmailer/phpmailer/PHPMailerAutoload.php");
     require ("vendor/phpmailer/phpmailer/class.phpmailer.php");*/
-    use Mailgun\Mailgun;
     
-    //require 'PHPMailerAutoload.php';
-    //require("class.phpmailer.php");
+    //Mailgun
+    use Mailgun\Mailgun;
     
     $nombre = $_POST["nombre"];
     $texto = $_POST["texto"];
@@ -43,7 +43,8 @@
             readfile($fichero);
             unlink($fichero);
         } else if ($_POST['action'] == 'Email') {
-            $domain = "sandbox*****************************.mailgun.org";
+            //Mailgun
+            /*$domain = "sandbox*****************************.mailgun.org";
             $client = new \Http\Adapter\Guzzle6\Client(); 
             $mailgun = new \Mailgun\Mailgun('key-********************', $client);
             $result = $mailgun->sendMessage($domain, array(
@@ -55,14 +56,27 @@
                     'attachment' => array($fichero)
                 ));
             unlink($fichero);
-            header("location:index.html");
-            /*$mail = new PHPMailer;
+            header("location:index.html");*/
+            
+            //PHPMailer
+            $mail = new PHPMailerOAuth;
             $mail->SMTPDebug = 2;                              
             $mail->isSMTP();                                      
             $mail->Host = 'smtp.gmail.com';  
-            $mail->SMTPAuth = true;                               
-            $mail->Username = 'oalbaab14dw@ikzubirimanteo.com';                
-            $mail->Password = $pass;                           
+            $mail->SMTPAuth = true;
+            $mail->AuthType = 'XOAUTH2';
+            //$mail->oauthUserEmail = "odeialba@gmail.com";
+            $mail->oauthUserEmail = "oalbaab14dw@ikzubirimanteo.com";
+            $mail->oauthClientId = "222546505251-cpspv8tniv3teu966t6alieje3bri88c.apps.googleusercontent.com";
+            //$mail->oauthClientId = "40698488631-29b4ok7mau3ppj1vp7rip6p220n8a95e.apps.googleusercontent.com";
+            $mail->oauthClientSecret = "ojo96Twzq_QEO3JHRCgjuDl1";
+            //$mail->oauthClientSecret = "OPwzUH7CbfFzybH6uPXFTzuE";
+            //$mail->oauthRefreshToken = "1/0hQtSrGZb-1W2Nv-OYUD8ReAWTh8hNmHXl85lLLkYP4";
+            $mail->oauthRefreshToken = "1/NHhUiIbUZf2yJd4p565u7iKHxueWM_VFUnZCXYvtbAlakjOUJ7JnR1TJD5Pjvr3T";
+            //$mail->oauthRefreshToken = "1/HzueEt-X0DicXYoOabuXwLV2OX2rw_1Y40AqDFd-Kp8";
+            //$mail->oauthRedirectUri = 'http://qr-project-oalba.c9users.io/vendor/phpmailer/phpmailer/get_oauth_token.php';
+            //$mail->Username = 'oalbaab14dw@ikzubirimanteo.com';                
+            //$mail->Password = '';                           
             $mail->SMTPSecure = 'tls';                           
             $mail->Port = 587;                                    
             $mail->From = "oalbaab14dw@ikzubirimanteo.com";
@@ -79,7 +93,7 @@
             } else {
                 echo 'Message has been sent';
                 unlink($fichero);
-            }*/
+            }
         }
     }
 ?>
